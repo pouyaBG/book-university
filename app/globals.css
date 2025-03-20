@@ -123,4 +123,34 @@
   .bg-pattern {
     @apply bg-[url('/images/pattern.webp')];
   }
+  .book-overview {
+    @apply flex flex-col-reverse items-center gap-12 sm:gap-32 xl:flex-row xl:gap-8;
+  }
+
+  .book-overview h1 {
+    @apply text-5xl font-semibold text-white md:text-7xl;
+  }
+  .book-overview_btn {
+    @apply mt-4 min-h-14 w-fit bg-[#E7C9A5] text-gray-100 hover:bg-primary/90 max-md:w-full;
+  }
+  .font-bebas-neue {
+    font-family: var(--bebas-neue);
+  }
+  .book-info {
+    @apply mt-7 flex flex-row flex-wrap gap-4 text-xl text-gray-100;
+  }
+  .book-copies {
+    @apply flex flex-row flex-wrap gap-4 mt-1;
+  }
+
+  .book-copies p {
+    @apply text-xl text-lime-100;
+  }
+
+  .book-copies p span {
+    @apply ml-2 font-semibold text-[#E7C9A5];
+  }
+  .book-description {
+    @apply mt-2 text-justify text-xl text-lime-100;
+  }
 }
