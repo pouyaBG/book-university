@@ -153,4 +153,7 @@
   .book-description {
     @apply mt-2 text-justify text-xl text-lime-100;
   }
+  .gradient-vertical {
+    background: linear-gradient(180deg, #12141d 0%, #12151f 100%);
+  }
 }
