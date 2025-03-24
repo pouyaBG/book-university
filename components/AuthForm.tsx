@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { FIELD_NAMES, FIELD_TYPES } from "@/constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   DefaultValues,
   FieldValues,
@@ -20,6 +21,7 @@ import {
   useForm,
   UseFormReturn,
 } from "react-hook-form";
+import { toast } from "sonner";
 import { ZodType } from "zod";
 import ImageUpload from "./ImageUpload";
 
@@ -36,12 +38,30 @@ const AuthForm = <T extends FieldValues>({
   defaultValues,
   onSubmit,
 }: Props<T>) => {
+  const route = useRouter();
   const isSingIn = type === "SING_IN";
   const form: UseFormReturn<T> = useForm({
     resolver: zodResolver(schema),
     defaultValues: defaultValues as DefaultValues<T>,
   });
-  const handleSubmit: SubmitHandler<T> = async (data) => {};
+  const handleSubmit: SubmitHandler<T> = async (data) => {
+    const result = await onSubmit(data);
+    if (result.success) {
+      {
+        isSingIn
+          ? toast.success("Success sing in")
+          : toast.error("Success sing up");
+      }
+      route.push("/");
+    } else {
+      {
+        isSingIn
+          ? toast.error("Success sing in")
+          : toast.error("Success sing up");
+      }
+      route.push("/");
+    }
+  };
 
   return (
     <div className="flex flex-col gap-4">

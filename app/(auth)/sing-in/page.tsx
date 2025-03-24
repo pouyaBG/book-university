@@ -1,5 +1,6 @@
 "use client";
 import AuthForm from "@/components/AuthForm";
+import { singInWithCredentials } from "@/lib/actions/auth";
 import { singInSchema } from "@/lib/validations";
 import React from "react";
 
@@ -13,7 +14,7 @@ const page = () => {
           email: "",
           password: "",
         }}
-        onSubmit={() => {}}
+        onSubmit={singInWithCredentials}
       />
     </div>
   );
