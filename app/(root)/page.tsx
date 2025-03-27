@@ -6,7 +6,7 @@ import { users } from "@/database/schema";
 
 export default async function Home() {
   const result = await db.select().from(users);
-  console.log("🚀 ~ Home ~ result:", JSON.stringify(result, null, 2));
+  // console.log("🚀 ~ Home ~ result:", JSON.stringify(result, null, 2));
   return (
     <>
       <BookOverview {...sampleBooks[0]} />

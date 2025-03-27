@@ -19,7 +19,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const user = await db
           .select()
           .from(users)
-          .where(eq(users.email, email.toString()))
+          .where(eq(users.email, credentials.email.toString()))
           .limit(1);
 
         if (user.length === 0) return null;
@@ -40,7 +40,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   pages: {
-    signIn: "/sing-in",
+    signIn: "/sign-in",
   },
   callbacks: {
     async jwt({ token, user }) {

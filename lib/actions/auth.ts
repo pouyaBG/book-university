@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use server";
 
 import { signIn } from "@/auth";
@@ -7,22 +6,27 @@ import { users } from "@/database/schema";
 import { hash } from "bcryptjs";
 import { eq } from "drizzle-orm";
 
-export const singInWithCredentials = async (params: PickAuthCredentials) => {
+export const signInWithCredentials = async (params: PickAuthCredentials) => {
   const { email, password } = params;
   try {
-    const result = await signIn("credentials", email, password);
+    const result = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+
     if (result?.error) {
       return { success: false, error: result.error };
     }
 
     return { success: true };
   } catch (error) {
-    console.log(error, "singin error");
-    return { success: false, error: "singin error" };
+    console.error("Signin error:", error);
+    return { success: false, error: "Signin error" };
   }
 };
 
-export const singUp = async (params: AuthCredentials) => {
+export const signUp = async (params: AuthCredentials) => {
   const { fullName, password, email, universityCard, universityId } = params;
 
   const existinguser = await db
@@ -44,10 +48,10 @@ export const singUp = async (params: AuthCredentials) => {
       universityId,
       password: hashesPassword,
     });
-    await singInWithCredentials({ email, password });
+    await signInWithCredentials({ email, password });
     return { success: true };
   } catch (error) {
-    console.log(error, "singup error");
-    return { success: false, error: "singup error" };
+    console.log(error, "signup error");
+    return { success: false, error: "signup error" };
   }
 };

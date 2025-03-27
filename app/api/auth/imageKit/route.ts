@@ -9,7 +9,7 @@ const {
 } = config;
 
 if (!publicKey || !privateKey || !urlEndpoint) {
-  throw new Error("Missing required ImageKit configuration values.");
+  throw new Error("Missign required ImageKit configuration values.");
 }
 
 const imagejit = new ImageKit({ publicKey, privateKey, urlEndpoint });

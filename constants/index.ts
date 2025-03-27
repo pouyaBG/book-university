@@ -97,13 +97,13 @@ export const sampleBooks = [
     totalCopies: 9,
     availableCopies: 5,
     description:
-      "An essential guide to understanding the core mechanisms of JavaScript, focusing on scope and closures.",
+      "An essential guide to understanding the core mechanisms of JavaScript, focusign on scope and closures.",
     coverColor: "#f8e036",
     coverUrl:
       "https://m.media-amazon.com/images/I/7186YfjgHHL._AC_UF1000,1000_QL80_.jpg",
     videoUrl: "/sample-video.mp4?updatedAt=1722593504152",
     summary:
-      "An essential guide to understanding the core mechanisms of JavaScript, focusing on scope and closures.",
+      "An essential guide to understanding the core mechanisms of JavaScript, focusign on scope and closures.",
   },
   {
     id: 4,

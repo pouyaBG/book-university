@@ -26,7 +26,7 @@ import { ZodType } from "zod";
 import ImageUpload from "./ImageUpload";
 
 interface Props<T extends FieldValues> {
-  type: "SING_IN" | "SING_UP";
+  type: "SIGN_IN" | "SIGN_UP";
   schema: ZodType<T>;
   defaultValues: T;
   onSubmit: (data: T) => Promise<{ success: boolean; error?: string }>;
@@ -39,7 +39,7 @@ const AuthForm = <T extends FieldValues>({
   onSubmit,
 }: Props<T>) => {
   const route = useRouter();
-  const isSingIn = type === "SING_IN";
+  const issignIn = type === "SIGN_IN";
   const form: UseFormReturn<T> = useForm({
     resolver: zodResolver(schema),
     defaultValues: defaultValues as DefaultValues<T>,
@@ -48,16 +48,16 @@ const AuthForm = <T extends FieldValues>({
     const result = await onSubmit(data);
     if (result.success) {
       {
-        isSingIn
-          ? toast.success("Success sing in")
-          : toast.error("Success sing up");
+        issignIn
+          ? toast.success("Success sign in")
+          : toast.error("Success sign up");
       }
       route.push("/");
     } else {
       {
-        isSingIn
-          ? toast.error("Success sing in")
-          : toast.error("Success sing up");
+        issignIn
+          ? toast.error("Success sign in")
+          : toast.error("Success sign up");
       }
       route.push("/");
     }
@@ -66,10 +66,10 @@ const AuthForm = <T extends FieldValues>({
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-semibold text-white">
-        {isSingIn ? "welcome back to BookWise" : "Create your library account"}
+        {issignIn ? "welcome back to BookWise" : "Create your library account"}
       </h1>
       <p className="text-gray-100">
-        {isSingIn
+        {issignIn
           ? "Access the vast collection of resources, and stay updated"
           : "Please complete all fields and upload a valid university ID to gain access to the library"}
       </p>
@@ -109,16 +109,16 @@ const AuthForm = <T extends FieldValues>({
           <Button
             className="bg-[#E7C9A5] text-black  hover:bg-primary hover:text-white cursor-pointer inline-flex min-h-14 w-full items-center justify-center rounded-md px-6 py-2 font-bold text-base"
             type="submit">
-            {isSingIn ? "Sing In" : "Sing Up"}
+            {issignIn ? "sign In" : "sign Up"}
           </Button>
         </form>
       </Form>
       <p className="text-center text-base font-medium text-gray-400">
-        {isSingIn ? "New to BookWise? " : "Already have an account? "}
+        {issignIn ? "New to BookWise? " : "Already have an account? "}
         <Link
-          href={isSingIn ? "/sing-up" : "/sing-in"}
+          href={issignIn ? "/sign-up" : "/sign-in"}
           className="text-[#E7C9A5] font-bold">
-          {isSingIn ? "Create an account" : "Sing in"}
+          {issignIn ? "Create an account" : "sign in"}
         </Link>
       </p>
     </div>
