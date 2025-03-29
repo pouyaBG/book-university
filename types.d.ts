@@ -21,8 +21,3 @@ interface AuthCredentials {
   universityId: number;
   universityCard: string;
 }
-
-interface PickAuthCredentials {
-  email: string;
-  password: string;
-}

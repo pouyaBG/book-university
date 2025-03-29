@@ -38,7 +38,7 @@ const AuthForm = <T extends FieldValues>({
   defaultValues,
   onSubmit,
 }: Props<T>) => {
-  const route = useRouter();
+  const router = useRouter();
   const issignIn = type === "SIGN_IN";
   const form: UseFormReturn<T> = useForm({
     resolver: zodResolver(schema),
@@ -46,20 +46,16 @@ const AuthForm = <T extends FieldValues>({
   });
   const handleSubmit: SubmitHandler<T> = async (data) => {
     const result = await onSubmit(data);
+
     if (result.success) {
-      {
-        issignIn
-          ? toast.success("Success sign in")
-          : toast.error("Success sign up");
-      }
-      route.push("/");
+      issignIn
+        ? toast.success("Success sign in")
+        : toast.success("Success sign up");
+      router.push("/");
     } else {
-      {
-        issignIn
-          ? toast.error("Success sign in")
-          : toast.error("Success sign up");
-      }
-      route.push("/");
+      issignIn
+        ? toast.error("Error signing in")
+        : toast.error("Error signing up");
     }
   };
 
